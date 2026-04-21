@@ -1,5 +1,6 @@
 .navbar {
     background-color: rgba(109, 6, 6, 0.959) !important;
+    box-shadow: 0 0 10px 0 black;
 }
 #btn-header {
     border-color: rgb(252, 206, 1) !important;

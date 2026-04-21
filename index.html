@@ -3,43 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elimina multas ya!!</title>
+    <title>Elimina tus multas ya!!</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/carrusel.css">
     <link rel="stylesheet" href="css/acerca-de-nosotros.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/oferta.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
-<!----- header ----->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-sm-4 px-xl-5">
-        <div class="container-fluid">
-            <span class="navbar-brand brand-shadow brand-text fw-bolder">
-                Elimina multas ya
-            </span>
-            <button class="navbar-toggler ms-auto" type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarMain">
-            <span class="navbar-toggler-icon">
-            </span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarMain">
-                <ul class="navbar-nav mx-auto text-center fw-bold">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Inicio</a>
-                    </li>
-                    <li class="nav-item ms-2">
-                        <a class="nav-link active" href="#">Quiénes Somos</a>
-                    </li>
-                </ul>
-                <div class="text-center text-lg-end">
-                    <button class="btn btn-primary btn-ingresar fw-bold border-2" id="btn-header">
-                        Ingresar
-                    </button>
-                </div>
-            </div>  
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-sm-4 px-xl-5">
+            <div class="container-fluid">
+                <span class="navbar-brand brand-shadow brand-text fw-bolder">
+                    Elimina multas ya
+                </span>
+                <button class="navbar-toggler ms-auto" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarMain">
+                <span class="navbar-toggler-icon">
+                </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarMain">
+                    <ul class="navbar-nav mx-auto text-center fw-bold">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <a class="nav-link active" href="#">Quiénes Somos</a>
+                        </li>
+                    </ul>
+                    <div class="text-center text-lg-end">
+                        <button class="btn btn-primary btn-ingresar fw-bold border-2" id="btn-header">
+                            Ingresa
+                        </button>
+                    </div>
+                </div>  
+            </div>
+        </nav>
+    </header>
+
+<!----- hero ------>
+    <div class="container-fluid hero-container p-5">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6 text-center text-md-start">
+                <h1 class="fw-bold mb-3">
+                Elimina multas ilimitadas por solo <u>15.000</u> x <u>3 meses</u> 
+                </h1>
+                <p class="mb-4">
+                En esta plataforma aprenderas a eliminar tus multas y comparendos legalmente de manera eficaz, con todas las herramientas necesarias e información paso a paso para un proceso agil y exitoso.
+                </p>
+                <button class="btn btn-primary btn-suscripcion btn-lg rounded-pill my-3 fw-bold border-2">suscripción aquí
+                </button>
+            </div>
+            <div class="col-12 col-md-6 text-center mt-4 mt-md-0">
+                <img src="img/imagen5.jpg" class="img-fluid" alt="Hero imagen">
+            </div>
         </div>
-    </nav>
+    </div>
 
 <!-----carrusel----->
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" data-bs-pause="false">
@@ -88,12 +113,12 @@
         </button>
     </div>
 
-    <!-- acerca de nosotros -->
+<!-- acerca de nosotros -->
     <div class="container-fluid container-text bg-dark py-5 text-white">
         <h2 class="text-center h2-border"> Acerca de nosotros
         </h2>
         <div class="row mt-4">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 col-sm-6 px-5 ps-sm-5 " >
                 <p>
                     En esta plataforma encontraras una guia paso a paso para eliminar todo tipo de comparendos, multas y acuerdos de pago por medios legales, siempre y cuando cumplan con los criterios establecidos por la ley.
                 </p>                
@@ -104,7 +129,7 @@
                     </li>
                     <li class="d-flex align-items-center mb-2">
                         <i class="bi bi-check-circle-fill text-success me-2"></i>
-                        Acuerdos de pago, comparendos y cualquier tipo de multas por prescripcion.
+                        Acuerdos de pago, fotomultas, alcoholemias, comparendos y cualquier tipo de multas por prescripcion.
                     </li>
                     <li class="d-flex align-items-center mb-2">
                         <i class="bi bi-check-circle-fill text-success me-2"></i>
@@ -116,15 +141,71 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 col-sm-6 px-5 pe-sm-5">
                 <p>Esta guia esta desarrolada y elaborada por abogados y asesores especialistas en transito, bajo los parametros de la ley en colombia, garantizando un proceso exitoso en la eliminacion de multas, siempre y cuando se cumplan los requisitos correspondientes en cada caso.
                 </p>
-                <img src="img/imagen4.png" class="img-fluid" style="max-height: 250px;" alt="">
+                <img src="img/imagen4.png" class="img-fluid" style="max-height: 250px; min-height: 150px; min-width: 200px;" alt="">
             </div>
         </div>
     </div>
-<!----- hero ------>
 
+<!----- oferta ----->
+    <div class="container-fluid oferta-container text-center">
+        <div class="row p-5">
+            <div class="col">
+                <h2>
+                    OFERTA TIEMPO LIMITADO 
+                </h2>
+                <h3 class="py-2">
+                    15.000 X 3 MESES
+                </h3>
+                <p class="py-3">
+                    Podrás utilizar la plataforma para eliminar todos los comparendos y multas de manera ilimitada durante este periodo de tiempo con un solo pago !!!
+                </p>
+                <button class="btn btn-primary btn-suscripcion btn-lg rounded-pill my-3 fw-bold border-2">suscripción aquí
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container-fluid footer-container bg-dark justify-content-center">
+            <div class="row">
+                <div class="col">
+                    <span class="footer-brand brand-shadow brand-text fw-bolder">
+                        Elimina multas ya
+                    </span>
+                </div>
+                <div class="col">
+                    <ul>
+                        <li>
+                            <a href="">
+                            Contacto
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                            suscripción
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <span>
+                        Redes Sociales
+                    </span>
+                    <div class="iconos-redes">
+                        <a href="">
+                            <i class="bi bi-facebook"></i>
+                        </a><a href="">
+                            <i class="bi bi-instagram"></i>
+                        </a><a href="">
+                            <i class="bi bi-whatsapp"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
 </script>
 </body>

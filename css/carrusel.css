@@ -16,7 +16,7 @@
         transform: translatey(0px) scale(1);
     }
     50% {
-        transform: translatey(-15px) scale(1.03);
+        transform: translatey(-10px) scale(1.03);
     }
     100% {
         transform: translatey(0px) scale(1);
