@@ -2,13 +2,29 @@
     color: white !important;
 }
 .iconos-redes i {
+    display: inline-block;
     color: white;
     margin: 0 5px;
 }
+.iconos-redes i:hover {
+    color: rgb(255, 217, 0) !important;
+    border-color: black !important;
+    scale: 1.07 !important;
+    transition: 0.3s !important;
+    text-shadow: 2px 2px 6px black;
+}
 .footer-container a {
+    display: inline-block;
     color: white !important;
     text-decoration: none;
     color: inherit;
+}
+.footer-container a:hover {
+    color: rgb(255, 217, 0) !important;
+    border-color: black !important;
+    scale: 1.07 !important;
+    transition: 0.3s !important;
+    text-shadow: 2px 2px 6px black;
 }
 ul li::marker {
     color: white;
