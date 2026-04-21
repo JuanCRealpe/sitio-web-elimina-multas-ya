@@ -1,0 +1,18 @@
+.oferta-container {
+    background-color: rgba(122, 10, 10, 0.959);
+}
+.oferta-container h2 {
+    color: rgb(43, 42, 42);
+    font-family: "Archivo Black", sans-serif;
+    text-shadow: 2px 2px 10px rgb(253, 223, 54);
+}
+.oferta-container h3 {
+    color: greenyellow;
+    font-family: "Archivo Black", sans-serif;
+    text-shadow: 2px 2px 10px black;
+}
+.oferta-container p {
+    color: white;
+    font-family: "Archivo Black", sans-serif;
+    text-shadow: 2px 2px 10px black;
+}

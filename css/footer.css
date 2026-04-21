@@ -1,0 +1,15 @@
+.footer-container span {
+    color: white !important;
+}
+.iconos-redes i {
+    color: white;
+    margin: 0 5px;
+}
+.footer-container a {
+    color: white !important;
+    text-decoration: none;
+    color: inherit;
+}
+ul li::marker {
+    color: white;
+}
