@@ -1,10 +1,12 @@
 .oferta-container {
-    background-color: rgba(122, 10, 10, 0.959);
+    background-color: #006b3c;
 }
 .oferta-container h2 {
     color: rgb(43, 42, 42);
     font-family: "Archivo Black", sans-serif;
     text-shadow: 2px 2px 10px rgb(253, 223, 54);
+    display: inline-block;
+    animation: crecer 1.5s infinite;
 }
 .oferta-container h3 {
     color: greenyellow;
@@ -16,3 +18,38 @@
     font-family: "Archivo Black", sans-serif;
     text-shadow: 2px 2px 10px black;
 }
+@keyframes crecer {
+    0% {
+    transform: scale(1);
+    }
+    50% {
+    transform: scale(1.1);
+    }
+    100% {
+    transform: scale(1);
+    }
+}
+.btn-oferta {
+    background-color: rgb(53, 53, 53);
+    border-color: rgb(252, 206, 1) !important;
+    display: inline-block;
+    animation: crecer 1.5s infinite;
+
+}
+.btn-oferta:hover {
+    background-color: rgb(2, 172, 2) !important;
+    scale: 1.05 !important;
+    transition: 0.3s !important;
+}
+
+@media (max-width: 322px) {
+    .btn-oferta {
+        font-size: 1rem;
+    }
+}
+@media (max-width: 292px) {
+    .btn-oferta {
+        font-size: 0.8rem;
+    }
+}
+
