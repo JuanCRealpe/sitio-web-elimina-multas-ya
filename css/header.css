@@ -1,12 +1,13 @@
 .navbar {
-    background-color: rgba(109, 6, 6, 0.959) !important;
+    background-color: #00331d !important; 
     box-shadow: 0 0 10px 0 black;
 }
 #btn-header {
+    background-color: rgb(53, 53, 53) !important;
     border-color: rgb(252, 206, 1) !important;
 }
 #btn-header:hover {
-    background-color: green !important;
+    background-color: rgb(2, 172, 2) !important;
     scale: 1.05 !important;
     transition: 0.3s !important;
 }

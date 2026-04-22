@@ -1,5 +1,6 @@
 .hero-container {
-    background-color: rgba(122, 10, 10, 0.959);
+    background-color: #006b3c;
+    padding-top: 90px !important;
 }
 .hero-container h1 {
     color: rgb(43, 42, 42);
@@ -26,10 +27,27 @@
     animation: flotar 4s ease-in-out infinite;
 }
 .btn-suscripcion:hover {
-    background-color: green !important;
+    background-color: rgb(2, 172, 2) !important;
     scale: 1.05 !important;
     transition: 0.3s !important;
+    
+}
+@keyframes flotar {
+    0% {
+        transform: translatey(0px) scale(1);
+    }
+    50% {
+        transform: translatey(-10px) scale(1.03);
+    }
+    100% {
+        transform: translatey(0px) scale(1);
+    }
 }
 .hero-container img {
     box-shadow: 0 10px 25px black;
+}
+@media (max-width: 300px) {
+    .btn-suscripcion {
+        font-size: 1rem;
+    }
 }
