@@ -1,15 +1,12 @@
 const Task = require("../models/Task")
 
 const crearTask = async (req, res) => {
-
     try {
+        const { titulo } = req.body;
 
-        const titulo = req.body.titulo;
-        const user = req.body.user;
+        let task = await Task.findOne({ titulo });
 
-        let task = await Task.findOne({ titulo: titulo });
-
-        if(task) {
+        if (task) {
             return res.status(400).json({
                 msg: `La tarea ${titulo} ya existe`
             });
@@ -17,31 +14,30 @@ const crearTask = async (req, res) => {
 
         task = new Task({
             titulo,
-            user
+            user: req.user.id
         });
 
         await task.save();
 
         return res.status(201).json({
-            msg: "la tarea se creo correctamente",
+            msg: "La tarea se creó correctamente",
             task
         });
 
     } catch (error) {
-
         res.status(500).json({
             error: error.message
         });
-
     }
-
 };
 
 const obtenerTasks = async (req, res) => {
 
     try {
 
-        const tasks = await Task.find();
+        const tasks = await Task.find({
+            user: req.user.id
+        });
 
         return res.status(200).json({
             msg: "Las tareas se obtuvieron correctamente",
@@ -63,14 +59,6 @@ const actualizarTask = async (req, res) => {
     try {
 
         const id = req.params.id;
-
-        let task = await Task.findById(id);
-
-        if(!task) {
-            return res.status(404).json({
-                msg: "La tarea no existe"
-            });
-        }
 
         task = await Task.findByIdAndUpdate(
             id,
@@ -98,14 +86,6 @@ const eliminarTask = async (req, res) => {
     try {
 
         const id = req.params.id;
-
-        let task = await Task.findById(id);
-
-        if(!task) {
-            return res.status(404).json({
-                msg: "La tarea no existe"
-            });
-        }
 
         await Task.findByIdAndDelete(id);
 

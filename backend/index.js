@@ -6,9 +6,11 @@ const connectDB = require("./config/db")
 
 const auth = require("./routes/auth.routes")
 const task = require("./routes/task.routes");
+const cors = require("cors")
 
 dotenv.config();
 connectDB();
+app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", auth)

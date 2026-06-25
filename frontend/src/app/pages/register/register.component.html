@@ -1,0 +1,109 @@
+<div class="min-vh-100 bg-dark py-5">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card shadow-lg border-0 border-top border-success border-4 rounded-4 bg-success-subtle">
+                    <div class="card-body p-4 p-md-5">
+                        <h2 class="text-center mb-4 text-success fw-bold">
+                            Registro
+                        </h2>
+                        <div 
+                            class="alert alert-danger"
+                            *ngIf="error"
+                        >
+                            {{ error }}
+                        </div>
+
+                        <form
+                            [formGroup]="form"
+                            (ngSubmit)="registrar()"
+                        >
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold text-dark">
+                                    Nombre
+                                </label>
+                                <input 
+                                    type="text"
+                                    class="form-control border-success-subtle"
+                                    formControlName="nombre"
+                                >
+                                <small
+                                    class="text-danger"
+                                    *ngIf="
+                                        form.get('nombre')?.touched &&
+                                        form.get('nombre')?.invalid
+                                    "
+                                >
+                                    El nombre es requerido y debe tener minimo 3 caracteres
+                                </small>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold text-dark">
+                                    Email
+                                </label>
+                                <input 
+                                    type="email"
+                                    class="form-control border-success-subtle"
+                                    formControlName="email"
+                                >
+                                <small
+                                    class="text-danger"
+                                    *ngIf="
+                                        form.get('email')?.touched &&
+                                        form.get('email')?.invalid
+                                    "
+                                >
+                                    El email es invalido
+                                </small>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold text-dark">
+                                    Edad
+                                </label>
+                                <input 
+                                    type="number"
+                                    class="form-control border-success-subtle"
+                                    formControlName="edad"
+                                >
+                                <small
+                                    class="text-danger"
+                                    *ngIf="
+                                        form.get('edad')?.touched &&
+                                        form.get('edad')?.invalid
+                                    "
+                                >
+                                    la edad es invalida
+                                </small>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold text-dark">
+                                    Password
+                                </label>
+                                <input 
+                                    type="password"
+                                    class="form-control border-success-subtle"
+                                    formControlName="password"
+                                >
+                                <small
+                                    class="text-danger"
+                                    *ngIf="
+                                        form.get('password')?.touched &&
+                                        form.get('password')?.invalid
+                                    "
+                                >
+                                    El password debe tener minimo 6 caracteres
+                                </small>
+                            </div>
+                            <button
+                                class="btn btn-success w-100 fw-semibold shadow-sm"
+                                [disabled]="cargando"
+                            >
+                                {{ cargando ? 'Registrando...' : ' Registrarse' }}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

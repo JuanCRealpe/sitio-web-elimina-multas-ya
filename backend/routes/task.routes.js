@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const validarToken = require("../middlewares/auth.middleware")
 
 const {
     crearTask,
@@ -9,12 +10,12 @@ const {
 
 const router = Router();
 
-router.post("/crearTask", crearTask);
+router.post("/crearTask",validarToken, crearTask);
 
-router.get("/obtenerTasks", obtenerTasks);
+router.get("/obtenerTasks",validarToken, obtenerTasks);
 
-router.put("/actualizarTask/:id", actualizarTask);
+router.put("/actualizarTask/:id",validarToken, actualizarTask);
 
-router.delete("/eliminarTask/:id", eliminarTask);
+router.delete("/eliminarTask/:id",validarToken, eliminarTask);
 
 module.exports = router;
