@@ -1,0 +1,37 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background-color: #0d0d0d;
+    color: #fff;
+}
+
+.card {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.form-control {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #fff;
+}
+
+.form-control:focus {
+    background-color: #2a2a2a;
+    border-color: #28a745;
+    color: #fff;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.form-label {
+    color: #adb5bd;
+}
+
+.table {
+    color: #fff;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #2a2a2a;
+    color: #fff;
+}

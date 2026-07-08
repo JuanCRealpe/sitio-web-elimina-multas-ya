@@ -1,0 +1,90 @@
+<div class="container py-4 mt-5">
+    <h2 class="mb-4 text-success fw-bold">Panel de Administración</h2>
+
+    <div class="row g-4">
+
+        <!-- FORMULARIO -->
+        <div class="col-md-4">
+            <div class="card border-success">
+                <div class="card-header bg-success text-white fw-bold">
+                    {{ modoEdicion ? 'Editar Curso' : 'Crear Curso' }}
+                </div>
+                <div class="card-body" [formGroup]="form">
+                    <div class="mb-3">
+                        <label class="form-label">Título</label>
+                        <input type="text" class="form-control" formControlName="title">
+                        @if (form.controls.title.invalid && form.controls.title.touched) {
+                            <small class="text-danger">El título es obligatorio</small>
+                        }
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Descripción</label>
+                        <textarea class="form-control" rows="3" formControlName="description"></textarea>
+                        @if (form.controls.description.invalid && form.controls.description.touched) {
+                            <small class="text-danger">La descripción es obligatoria</small>
+                        }
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Categoría</label>
+                        <input type="text" class="form-control" formControlName="category">
+                        @if (form.controls.category.invalid && form.controls.category.touched) {
+                            <small class="text-danger">La categoría es obligatoria</small>
+                        }
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Imagen</label>
+                        <input type="file" class="form-control" accept="image/*" (change)="onImagenSeleccionada($event)">
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-success w-100" (click)="guardar()">
+                            {{ modoEdicion ? 'Actualizar' : 'Crear' }}
+                        </button>
+                        @if (modoEdicion) {
+                            <button class="btn btn-secondary w-100" (click)="resetForm()">
+                                Cancelar
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABLA -->
+        <div class="col-md-8">
+            <div class="card border-success">
+                <div class="card-header bg-success text-white fw-bold">
+                    Cursos registrados
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Título</th>
+                                <th>Categoría</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (course of courses; track course._id) {
+                                <tr>
+                                    <td>
+                                        <img [src]="'http://localhost:8000/' + course.image" [alt]="course.title"
+                                            style="width: 60px; height: 40px; object-fit: cover; border-radius: 4px;">
+                                    </td>
+                                    <td>{{ course.title }}</td>
+                                    <td><span class="badge bg-success">{{ course.category }}</span></td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm me-2" (click)="editar(course)">Editar</button>
+                                        <button class="btn btn-danger btn-sm" (click)="eliminar(course._id)">Eliminar</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
