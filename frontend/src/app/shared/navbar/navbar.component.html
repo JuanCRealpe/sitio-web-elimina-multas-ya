@@ -1,0 +1,47 @@
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-sm-4 px-xl-5 fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand brand-shadow brand-text fw-bolder" routerLink="/">
+                    Elimina multas ya
+                </a>
+                <button class="navbar-toggler ms-auto" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarMain">
+                    <span class="navbar-toggler-icon">
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarMain">
+                    <ng-container *ngIf="autenticado">
+                        <ul class="navbar-nav mx-auto text-center fw-bold">
+                            <li class="nav-item">
+                                <a class="nav-link active" routerLink="/course">Contenido</a>
+                            </li>
+                            <li class="nav-item ms-3">
+                                <a class="nav-link active" href="#inicio">Mis tareas</a>
+                            </li>
+                            @if (admin) {
+                                <li class="nav-item ms-3">
+                                    <a class="nav-link active" routerLink="/admin">Admin cards</a>
+                                </li>
+                            }
+                        </ul>
+                        <div class="text-center text-lg-end">
+                            <button  class="btn btn-primary fw-bold border-2" id="btn-header-a" (click)="logout()">
+                                Cerrar Sesion
+                            </button>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="!autenticado">
+                        <ul class="navbar-nav mx-auto text-center fw-bold">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="">Inicio</a>
+                            </li>
+                        </ul>
+                        <div class="text-center text-lg-end">
+                            <button routerLink="/" class="btn btn-primary fw-bold border-2" id="btn-header">
+                                Iniciar Sesion
+                            </button>
+                        </div>
+                    </ng-container>
+                </div>  
+            </div>
+        </nav>

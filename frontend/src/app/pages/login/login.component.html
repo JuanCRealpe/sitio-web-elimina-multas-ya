@@ -7,12 +7,6 @@
                         <h2 class="text-center mb-4 text-success fw-bold">
                             Iniciar Sesión
                         </h2>
-                        <div 
-                            class="alert alert-danger"
-                            *ngIf="error"
-                        >
-                            {{ error }}
-                        </div>
 
                         <form
                             [formGroup]="form"
@@ -65,7 +59,6 @@
                         </form>
                         <p class="text-center mt-3">
                             ¿No tienes una cuenta?
-
                             <a routerLink="/register">
                                 Registrate
                             </a>

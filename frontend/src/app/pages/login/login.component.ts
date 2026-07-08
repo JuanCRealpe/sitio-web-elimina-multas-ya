@@ -7,6 +7,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,6 @@ export class LoginComponent {
   private router = inject(Router);
 
   cargando: boolean = false;
-  error: string = "";
   form = this.fb.nonNullable.group({
     email: [
       "",
@@ -57,15 +57,27 @@ export class LoginComponent {
         .subscribe({
           next: (respuesta) => {
             this.cargando = false;
-            alert("Has iniciado sesion correctamente");
-            console.log(respuesta);
             this.authService.guardarToken(respuesta.token);
-
-            this.router.navigate(["/tasks"])
+            this.authService.guardarRole(respuesta.role);
+            Swal.fire({               // ← CAMBIADO
+              icon: 'success',
+              title: '¡Bienvenido!',
+              text: 'Has iniciado sesión correctamente',
+              confirmButtonColor: '#28a745',
+              timer: 1500,
+              showConfirmButton: false
+            }).then(() => {
+              this.router.navigate(["/course"]);
+            });
           },
           error: (error) => {
             this.cargando = false;
-            this.error = error.error?.msg || "Error al iniciar sesión"
+            Swal.fire({               // ← CAMBIADO
+              icon: 'error',
+              title: 'Error',
+              text: error.error?.msg || 'Error al iniciar sesión',
+              confirmButtonColor: '#28a745'
+            });
           }
         })
   }

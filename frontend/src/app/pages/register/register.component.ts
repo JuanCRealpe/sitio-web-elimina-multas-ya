@@ -7,6 +7,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,6 @@ export class RegisterComponent {
   private router = inject(Router);
 
   cargando: boolean = false;
-  error: string = "";
   form = this.fb.group({
     nombre: [
       "", 
@@ -73,13 +73,25 @@ export class RegisterComponent {
         .subscribe({
           next: () => {
             this.cargando = false;
-            alert("Usuario registrado correctamente")
-
-            this.router.navigate(["/login"])
+            Swal.fire({                    // ← CAMBIADO
+              icon: 'success',
+              title: '¡Registro exitoso!',
+              text: 'Usuario registrado correctamente',
+              confirmButtonColor: '#28a745',
+              timer: 1500,
+              showConfirmButton: false
+            }).then(() => {
+              this.router.navigate(["/login"]);
+            });
           },
           error: (error) => {
             this.cargando = false;
-            this.error = error.error?.msg || "Error al registrar"
+            Swal.fire({                    // ← CAMBIADO
+              icon: 'error',
+              title: 'Error',
+              text: error.error?.msg || 'Error al registrar',
+              confirmButtonColor: '#28a745'
+            });
           }
         })
   }

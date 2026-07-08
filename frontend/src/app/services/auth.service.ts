@@ -42,5 +42,14 @@ export class AuthService {
     sessionStorage.removeItem('token');
   }
 
+  guardarRole(role: string): void {        // ← NUEVO
+    sessionStorage.setItem("role", role);
+  }
+
+  esAdmin(): boolean {                     // ← NUEVO
+    const role = sessionStorage.getItem("role");
+    return role === "admin";
+  }
+
 }
 
