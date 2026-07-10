@@ -7,6 +7,7 @@ const connectDB = require("./config/db")
 const auth = require("./routes/auth.routes")
 const task = require("./routes/task.routes");
 const course = require("./routes/course.routes");
+const step = require("./routes/step.routes"); // ← NUEVO
 const cors = require("cors")
 
 dotenv.config();
@@ -15,9 +16,11 @@ app.use(cors());
 app.use(express.json());
 app.use("/uploads", express.static("uploads")); // ← NUEVO
 
+
 app.use("/api/auth", auth);
 app.use("/api/task", task);
 app.use("/api/courses", course);
+app.use("/api/steps", step); // ← NUEVO
 
 const PORT = process.env.PORT;
 
