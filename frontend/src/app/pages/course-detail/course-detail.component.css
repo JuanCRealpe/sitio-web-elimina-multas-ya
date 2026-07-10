@@ -1,0 +1,140 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background-color: #0d0d0d;
+    color: #fff;
+}
+
+/* CARDS */
+.step-card {
+    background-color: #1d1d1d;
+    border: 1px solid #28a745;
+    color: #fff;
+}
+
+.step-header {
+    background-color: #1f3a27;
+    color: #28a745;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #28a745;
+}
+
+.step-title {
+    font-size: 1rem;
+    color: #fff;
+}
+
+/* ADMIN CARD */
+.admin-card {
+    background-color: #1a1a1a;
+    border: 1px solid #ffc107;
+}
+
+.admin-header {
+    background-color: #2a2000;
+    color: #ffc107;
+    font-weight: 700;
+    border-bottom: 1px solid #ffc107;
+}
+
+/* BLOQUES */
+.bloque {
+    padding: 0.75rem;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+}
+
+.bloque-contenido {
+    flex: 1;
+    text-align: center;
+}
+
+.bloque-titulo {
+    color: #fff;
+    font-weight: 800;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.bloque-subtitulo {
+    color: #28a745;
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+}
+
+.bloque-texto {
+    color: #d1d5db;
+    line-height: 1.9;
+    font-size: 1.1rem;
+}
+
+.bloque-imagen {
+    max-height: 300px;
+    object-fit: contain;
+    display: block;
+    margin: 0.5rem auto;
+}
+
+.btn-archivo {
+    border: 1px dashed #28a745;
+    padding: 0.5rem 1.2rem;
+}
+
+.btn-accion {
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+}
+
+.btn-eliminar-bloque {
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+.btn-editar-bloque {
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+/* BOTONES ADMIN BLOQUE */
+.bloque-acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-self: flex-start;
+}
+
+/* FORMULARIO BLOQUE */
+.bloque-form {
+    background-color: #111;
+    border: 1px dashed #28a745;
+    border-radius: 8px;
+}
+
+/* INPUTS */
+.dark-input {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #fff;
+}
+
+.dark-input:focus {
+    background-color: #2a2a2a;
+    border-color: #28a745;
+    color: #fff;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+.dark-input::placeholder {
+    color: #adb6be;
+    opacity: 1;
+}
+
+.label-text {
+    color: #adb5bd;
+}

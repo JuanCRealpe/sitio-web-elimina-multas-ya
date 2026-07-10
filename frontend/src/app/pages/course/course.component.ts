@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { CourseService } from '../../services/course.service';
 import { Course } from '../../interfaces/course';
 import Swal from 'sweetalert2'; // ← NUEVO
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './course.component.html',
   styleUrl: './course.component.css'
 })

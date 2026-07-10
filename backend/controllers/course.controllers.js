@@ -54,9 +54,19 @@ const actualizarCourse = async (req, res) => {
     try {
         const id = req.params.id;
 
+        const datos = {
+            title:       req.body.title,
+            description: req.body.description,
+            category:    req.body.category
+        };
+
+        if (req.file) {
+            datos.image = req.file.path;
+        }
+
         const course = await Course.findByIdAndUpdate(
             id,
-            req.body,
+            datos,
             { new: true }
         );
 

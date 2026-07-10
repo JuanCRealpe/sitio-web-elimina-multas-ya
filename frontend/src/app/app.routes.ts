@@ -4,6 +4,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { TaskComponent } from './pages/task/task.component';
 import { CoursesComponent } from './pages/course/course.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { CourseDetailComponent } from './pages/course-detail/course-detail.component';
 import { authGuard } from './guards/auth.guard';
 import { adminGuard } from './guards/admin.guard';
 
@@ -35,5 +36,10 @@ export const routes: Routes = [
         path: "admin",                    // ← NUEVO
         component: AdminComponent,
         canActivate: [authGuard, adminGuard]
+    },
+        {
+        path: "course/:id",              // ← NUEVO
+        component: CourseDetailComponent,
+        canActivate: [authGuard]
     },
 ];

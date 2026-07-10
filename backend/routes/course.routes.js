@@ -15,7 +15,7 @@ router.post("/crearCourse", validarToken, upload.single("image"), crearCourse);
 
 router.get("/obtenerCourses", validarToken, obtenerCourses);
 
-router.put("/actualizarCourse/:id", validarToken, actualizarCourse);
+router.put("/actualizarCourse/:id", validarToken, upload.single("image"), actualizarCourse);
 
 router.delete("/eliminarCourse/:id", validarToken, eliminarCourse);
 
