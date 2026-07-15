@@ -16,8 +16,9 @@ const crearCourse = async (req, res) => {
         course = new Course({
             title,
             description,          // ← CAMBIADO
-            image: req.file.path, // ← CAMBIADO (antes era req.body.image)
-            category              // ← CAMBIADO
+            image: req.file ? req.file.path : null, // ← CAMBIADO (antes era req.body.image)// luego image: req.file.path,// despues ultimo cambio
+            category: req.body.category,
+            esInterno: req.body.esInterno === 'true'               // ← CAMBIADO
         });
 
         await course.save();
@@ -34,9 +35,10 @@ const crearCourse = async (req, res) => {
     }
 };
 
+
 const obtenerCourses = async (req, res) => {
     try {
-        const courses = await Course.find();
+        const courses = await Course.find({ esInterno: false }); // ← CAMBIADO
 
         return res.status(200).json({
             msg: 'Los cursos se obtuvieron correctamente',

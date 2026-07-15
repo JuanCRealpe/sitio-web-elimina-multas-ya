@@ -1,9 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { StepService } from '../../services/step.service';
 import { AuthService } from '../../services/auth.service';
+import { CourseService } from '../../services/course.service'; // ← NUEVO
 import { Step, Bloque } from '../../interfaces/step';
 import Swal from 'sweetalert2';
 
@@ -15,10 +16,12 @@ import Swal from 'sweetalert2';
   styleUrl: './course-detail.component.css'
 })
 export class CourseDetailComponent implements OnInit {
-  private route       = inject(ActivatedRoute);
-  private stepService = inject(StepService);
-  private authService = inject(AuthService);
-  private fb          = inject(FormBuilder);
+  private route         = inject(ActivatedRoute);
+  private router        = inject(Router); // ← NUEVO
+  private stepService   = inject(StepService);
+  private authService   = inject(AuthService);
+  private courseService = inject(CourseService); // ← NUEVO
+  private fb            = inject(FormBuilder);
 
   courseId: string = '';
   steps: Step[] = [];
@@ -61,10 +64,13 @@ export class CourseDetailComponent implements OnInit {
     redirige:  ['']
   });
 
+  // después
   ngOnInit(): void {
-    this.courseId = this.route.snapshot.paramMap.get('id')!;
-    this.esAdmin  = this.authService.esAdmin();
-    this.cargarSteps();
+      this.route.paramMap.subscribe(params => {
+          this.courseId = params.get('id')!;
+          this.esAdmin  = this.authService.esAdmin();
+          this.cargarSteps();
+      });
   }
 
   cargarSteps(): void {
@@ -167,12 +173,33 @@ export class CourseDetailComponent implements OnInit {
       return;
     }
 
+    const tipo = this.bloqueForm.value.tipo!;
+
+    if (tipo === 'boton-interno') {
+      const formData = new FormData();
+      formData.append('title',       this.bloqueForm.value.nombre || 'Nuevo curso');
+      formData.append('description', '');
+      formData.append('category',    '');
+      formData.append('esInterno',   'true'); // ← NUEVO
+
+      this.courseService.crearCourse(formData).subscribe({
+        next: (res) => {
+          this.guardarBloqueConRedirige(stepId, res.course._id);
+        },
+        error: () => Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudo crear el curso', confirmButtonColor: '#28a745' })
+      });
+    } else {
+      this.guardarBloqueConRedirige(stepId, null);
+    }
+  }
+
+  guardarBloqueConRedirige(stepId: string, redirige: string | null): void {
     const formData = new FormData();
     formData.append('tipo',      this.bloqueForm.value.tipo!);
     formData.append('contenido', this.bloqueForm.value.contenido || '');
     formData.append('nombre',    this.bloqueForm.value.nombre || '');
     formData.append('url',       this.bloqueForm.value.url || '');
-    formData.append('redirige',  this.bloqueForm.value.redirige || '');
+    formData.append('redirige',  redirige || '');
 
     if (this.archivoSeleccionado) {
       formData.append('contenido', this.archivoSeleccionado);
@@ -248,4 +275,12 @@ export class CourseDetailComponent implements OnInit {
       }
     });
   }
+  
+    // ── IR A CURSO ── // ← NUEVO
+  irACurso(redirige: any): void {
+    const id = redirige?._id || redirige;
+    this.router.navigate(['/course', id]);
+  }
+
 }
+  

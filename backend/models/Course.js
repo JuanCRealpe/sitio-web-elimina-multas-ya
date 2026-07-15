@@ -8,17 +8,21 @@ const courseSchema = new mongoose.Schema({
     },
     description: { 
         type: String, 
-        required: true, 
+        default: '', 
         trim: true 
     },
     image:       { 
         type: String, 
-        required: true
+        default: null
     },
     category:    { 
         type: String, 
         default: '' 
-    }
+    },
+    esInterno:   { 
+        type: Boolean, 
+        default: false 
+    } // ← NUEVO
 });
 
 module.exports = mongoose.model('Course', courseSchema);
