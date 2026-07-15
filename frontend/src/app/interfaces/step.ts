@@ -4,7 +4,7 @@ export interface Bloque {
     contenido: string | null;
     nombre: string | null;
     url: string | null;
-    redirige: string | null;
+    redirige: any; // ← CAMBIADO
 }
 
 export interface Step {
