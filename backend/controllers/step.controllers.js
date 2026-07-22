@@ -1,4 +1,4 @@
-const Step = require("../models/step");
+const Step = require("../models/Step");
 
 const crearStep = async (req, res) => {
     try {
