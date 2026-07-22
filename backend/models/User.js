@@ -22,6 +22,14 @@ const userSchema = new mongoose.Schema ({
         type: String,
         default: "user",
         enum: ["user", "admin"]
+    },
+    suscripcionActiva: {
+        type: Boolean,
+        default: false
+    },
+    suscripcionExpira: {
+        type: Date,
+        default: null
     }
 });
 

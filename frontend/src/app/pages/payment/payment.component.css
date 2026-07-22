@@ -1,0 +1,11 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background-color: #0d0d0d;
+    color: #fff;
+}
+
+.card {
+    background-color: #1a1a1a;
+    color: #fff;
+}
