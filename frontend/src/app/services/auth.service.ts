@@ -29,7 +29,7 @@ export class AuthService {
     sessionStorage.setItem("token", token);
   }
 
-    estaAutenticado(): boolean {
+  estaAutenticado(): boolean {
     const token = sessionStorage.getItem('token')
     if(token) {
       return true;
@@ -49,6 +49,14 @@ export class AuthService {
   esAdmin(): boolean {                     // ← NUEVO
     const role = sessionStorage.getItem("role");
     return role === "admin";
+  }
+
+  guardarSuscripcion(activa: boolean): void {
+    sessionStorage.setItem("suscripcion", activa ? "true" : "false");
+  }
+
+  tieneSuscripcion(): boolean {
+    return sessionStorage.getItem("suscripcion") === "true";
   }
 
 }

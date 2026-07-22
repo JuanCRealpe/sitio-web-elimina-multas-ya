@@ -1,0 +1,29 @@
+<div class="container py-4 mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-success">
+                <div class="card-header bg-success text-white fw-bold text-center">
+                    Activar Suscripción
+                </div>
+                <div class="card-body text-center p-5">
+                    @if (cargando) {
+                    <div class="spinner-border text-success" role="status"></div>
+                    } @else {
+                    <h2 class="text-success fw-bold mb-3">$19.900 COP</h2>
+                    <p class="text-secondary mb-4">Acceso completo por 3 meses a todo el contenido de Elimina Multas Ya
+                    </p>
+                    <ul class="list-unstyled text-start mb-4">
+                        <li class="mb-2">✅ Acceso a todos los cursos</li>
+                        <li class="mb-2">✅ Guías paso a paso</li>
+                        <li class="mb-2">✅ Archivos descargables</li>
+                        <li class="mb-2">✅ Actualizaciones incluidas</li>
+                    </ul>
+                    <button class="btn btn-success w-100 fw-bold py-3" (click)="pagar()">
+                        Pagar con Wompi
+                    </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
