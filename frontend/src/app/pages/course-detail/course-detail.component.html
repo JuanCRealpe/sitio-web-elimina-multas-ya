@@ -86,10 +86,10 @@
                     <p class="bloque-texto">{{ bloque.contenido }}</p>
                     }
                     @if (bloque.tipo === 'imagen') {
-                    <img [src]="'http://localhost:8000/' + bloque.contenido" class="img-fluid rounded bloque-imagen">
+                    <img [src]="'http://3.135.61.11:8000/' + bloque.contenido" class="img-fluid rounded bloque-imagen">
                     }
                     @if (bloque.tipo === 'archivo') {
-                    <a [href]="'http://localhost:8000/' + bloque.contenido" target="_blank" download
+                    <a [href]="'http://3.135.61.11:8000/' + bloque.contenido" target="_blank" download
                         class="btn btn-outline-success btn-archivo">
                         📄 {{ bloque.nombre || 'Descargar archivo' }}
                     </a>
