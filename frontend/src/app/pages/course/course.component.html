@@ -9,7 +9,7 @@
         @for (course of courses; track course._id) {
             <div class="col">
                 <div class="card h-100" [routerLink]="['/course', course._id]" style="cursor: pointer;"> <!-- ← NUEVO -->
-                    <img [src]="'http://localhost:8000/' + course.image" [alt]="course.title" class="card-img-top" style="height: 200px; object-fit: cover;">
+                    <img [src]="'http://3.135.61.11:8000/' + course.image" [alt]="course.title" class="card-img-top" style="height: 200px; object-fit: cover;">
                     <div class="card-body">
                         <span class="badge bg-success mb-2">{{ course.category }}</span>
                         <h5 class="card-title">{{ course.title }}</h5>
