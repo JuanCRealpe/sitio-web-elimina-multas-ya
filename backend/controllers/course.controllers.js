@@ -1,9 +1,49 @@
 const Course = require('../models/Course');
 const fs = require("fs"); // ← NUEVO
 
+// const crearCourse = async (req, res) => {
+//     try {
+//         const { title, description, category } = req.body; // ← CAMBIADO
+
+//         let course = await Course.findOne({ title });
+
+//         if (course) {
+//             return res.status(400).json({
+//                 msg: `El curso ${title} ya existe`
+//             });
+//         }
+
+//         course = new Course({
+//             title,
+//             description,          // ← CAMBIADO
+//             image: req.file ? req.file.path : null, // ← CAMBIADO (antes era req.body.image)// luego image: req.file.path,// despues ultimo cambio
+//             category: req.body.category,
+//             esInterno: req.body.esInterno === 'true'               // ← CAMBIADO
+//         });
+
+//         await course.save();
+
+//         return res.status(201).json({
+//             msg: 'El curso se creó correctamente',
+//             course
+//         });
+
+//     } catch (error) {
+//         res.status(500).json({
+//             error: error.message
+//         });
+//     }
+// };
+
 const crearCourse = async (req, res) => {
     try {
-        const { title, description, category } = req.body; // ← CAMBIADO
+        const { title, description, category } = req.body;
+
+        if (!req.file) { // ← NUEVO
+            return res.status(400).json({
+                msg: "La imagen es obligatoria para crear un curso"
+            });
+        }
 
         let course = await Course.findOne({ title });
 
@@ -15,10 +55,10 @@ const crearCourse = async (req, res) => {
 
         course = new Course({
             title,
-            description,          // ← CAMBIADO
-            image: req.file ? req.file.path : null, // ← CAMBIADO (antes era req.body.image)// luego image: req.file.path,// despues ultimo cambio
+            description,
+            image: req.file.path,
             category: req.body.category,
-            esInterno: req.body.esInterno === 'true'               // ← CAMBIADO
+            esInterno: req.body.esInterno === 'true'
         });
 
         await course.save();
