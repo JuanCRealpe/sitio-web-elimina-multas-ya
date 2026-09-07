@@ -1,0 +1,248 @@
+/* header */
+
+.navbar {
+    background-color: #00331d !important; 
+    box-shadow: 0 0 10px 0 black;
+}
+#btn-header {
+    background-color: rgb(53, 53, 53) !important;
+    border-color: rgb(252, 206, 1) !important;
+}
+#btn-header:hover {
+    background-color: rgb(2, 172, 2) !important;
+    scale: 1.05 !important;
+    transition: 0.3s !important;
+}
+.brand-shadow {
+    text-shadow: 2px 2px 6px black;
+}
+.navbar-nav a:hover {
+    color: rgb(255, 217, 0) !important;
+    border-color: black !important;
+    scale: 1.07 !important;
+    transition: 0.3s !important;
+    text-shadow: 2px 2px 6px black;
+}
+
+/* responsive */
+@media (max-width: 500px) {
+    .navbar-toggler {
+        font-size: 0.7rem;
+    }
+    .btn-ingresar {
+        font-size: 0.7rem;
+    }
+}
+@media (max-width: 260px) {
+    .navbar-brand {
+        font-size: 15px;
+    }
+    .navbar-toggler {
+        font-size: 0.5rem;
+    }
+}
+
+/* hero */
+
+.hero-container {
+    background-color: #006b3c;
+    padding-top: 90px !important;
+}
+.hero-container h1 {
+    color: rgb(43, 42, 42);
+    font-family: "Archivo Black", sans-serif;
+    text-shadow: 2px 2px 10px rgb(253, 223, 54);
+}
+.hero-container u {
+    color: greenyellow;
+    font-family: "Archivo Black", sans-serif;
+    text-shadow: 2px 2px 10px black;
+}
+
+.hero-container p {
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 10px black;
+}
+.hero-container img {
+    border-radius: 25px;
+}
+.btn-suscripcion {
+    background-color: rgb(53, 53, 53);
+    border-color: rgb(252, 206, 1) !important;
+    animation: flotar 4s ease-in-out infinite;
+}
+.btn-suscripcion:hover {
+    background-color: rgb(2, 172, 2) !important;
+    scale: 1.05 !important;
+    transition: 0.3s !important;
+    
+}
+@keyframes flotar {
+    0% {
+        transform: translatey(0px) scale(1);
+    }
+    50% {
+        transform: translatey(-10px) scale(1.03);
+    }
+    100% {
+        transform: translatey(0px) scale(1);
+    }
+}
+.hero-container img {
+    box-shadow: 0 10px 25px black;
+}
+@media (max-width: 300px) {
+    .btn-suscripcion {
+        font-size: 1rem;
+    }
+}
+
+/* acerca de nosotros */
+
+.h2-border {
+    text-shadow: 2px 2px 6px rgb(252, 206, 1) ;
+}
+/* responsive */
+@media (max-width: 500px) {
+    .container-text h2 {
+        font-size: 1.4rem;
+    }
+    .container-text p {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+    .container-text li {
+        font-size: 0.9rem;
+    }
+}
+
+/* carruel */
+
+.carousel-item {
+    height: 550px;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+}
+.carousel-caption h2 {
+    text-shadow: 3px 3px 15px black;
+    animation: flotar 4s ease-in-out infinite;
+}
+@keyframes flotar {
+    0% {
+        transform: translatey(0px) scale(1);
+    }
+    50% {
+        transform: translatey(-10px) scale(1.03);
+    }
+    100% {
+        transform: translatey(0px) scale(1);
+    }
+}
+/* responsive */
+@media (max-width: 500px) {
+    .carousel-item {
+    max-height: 400px;
+    }
+}
+@media (max-width: 350px) {
+    .carousel-item {
+    max-height: 300px;
+    }
+}
+
+/* oferta */
+
+.oferta-container {
+    background-color: #006b3c;
+}
+.oferta-container h2 {
+    color: rgb(43, 42, 42);
+    font-family: "Archivo Black", sans-serif;
+    text-shadow: 2px 2px 10px rgb(253, 223, 54);
+    display: inline-block;
+    animation: crecer 1.5s infinite;
+}
+.oferta-container h3 {
+    color: greenyellow;
+    font-family: "Archivo Black", sans-serif;
+    text-shadow: 2px 2px 10px black;
+}
+.oferta-container p {
+    color: white;
+    font-family: "Archivo Black", sans-serif;
+    text-shadow: 2px 2px 10px black;
+}
+@keyframes crecer {
+    0% {
+    transform: scale(1);
+    }
+    50% {
+    transform: scale(1.1);
+    }
+    100% {
+    transform: scale(1);
+    }
+}
+.btn-oferta {
+    background-color: rgb(53, 53, 53);
+    border-color: rgb(252, 206, 1) !important;
+    display: inline-block;
+    animation: crecer 1.5s infinite;
+
+}
+.btn-oferta:hover {
+    background-color: rgb(2, 172, 2) !important;
+    scale: 1.05 !important;
+    transition: 0.3s !important;
+}
+
+@media (max-width: 322px) {
+    .btn-oferta {
+        font-size: 1rem;
+    }
+}
+@media (max-width: 292px) {
+    .btn-oferta {
+        font-size: 0.8rem;
+    }
+}
+
+/* footer */
+
+.footer-container span {
+    color: white !important;
+}
+.iconos-redes i {
+    display: inline-block;
+    color: white;
+    margin: 0 5px;
+}
+.iconos-redes i:hover {
+    color: rgb(255, 217, 0) !important;
+    border-color: black !important;
+    scale: 1.07 !important;
+    transition: 0.3s !important;
+    text-shadow: 2px 2px 6px black;
+}
+.footer-container a {
+    display: inline-block;
+    color: white !important;
+    text-decoration: none;
+    color: inherit;
+}
+.footer-container a:hover {
+    color: rgb(255, 217, 0) !important;
+    border-color: black !important;
+    scale: 1.07 !important;
+    transition: 0.3s !important;
+    text-shadow: 2px 2px 6px black;
+}
+ul li::marker {
+    color: white;
+}
+

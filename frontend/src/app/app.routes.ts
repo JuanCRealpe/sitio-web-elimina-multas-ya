@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { HomeComponent } from './pages/home/home.component'; // ← NUEVO
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { TaskComponent } from './pages/task/task.component';
@@ -13,8 +14,7 @@ import { subscriptionGuard } from './guards/subscription.guard'; // ← NUEVO wo
 export const routes: Routes = [
     {
         path: "",
-        redirectTo: "login",
-        pathMatch: "full"
+        component: HomeComponent   // ← CAMBIADO (antes redirigía a login)
     },
     {
         path: "login",
@@ -38,11 +38,6 @@ export const routes: Routes = [
         path: "admin",                    // ← NUEVO
         component: AdminComponent,
         canActivate: [authGuard, adminGuard]
-    },
-    {
-        path: "course/:id",              // ← NUEVO
-        component: CourseDetailComponent,
-        canActivate: [authGuard]
     },
     {
         path: "course/:id",
