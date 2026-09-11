@@ -5,6 +5,7 @@ const upload = require("../middlewares/upload.middleware");
 const {
     crearCourse,
     obtenerCourses,
+    obtenerTodosLosCourses,
     actualizarCourse,
     eliminarCourse
 } = require("../controllers/course.controllers");
@@ -14,6 +15,8 @@ const router = Router();
 router.post("/crearCourse", validarToken, upload.single("image"), crearCourse);
 
 router.get("/obtenerCourses", validarToken, obtenerCourses);
+
+router.get("/obtenerTodosLosCourses", validarToken, obtenerTodosLosCourses);
 
 router.put("/actualizarCourse/:id", validarToken, upload.single("image"), actualizarCourse);
 
