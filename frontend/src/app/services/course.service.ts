@@ -15,6 +15,10 @@ export class CourseService {
         return this.http.get(`${this.api}/courses/obtenerCourses`);
     }
 
+    obtenerTodosLosCourses(): Observable<any> {
+    return this.http.get(`${this.api}/courses/obtenerTodosLosCourses`);
+    }
+
     crearCourse(formData: FormData): Observable<any> {
         return this.http.post(`${this.api}/courses/crearCourse`, formData);
     }

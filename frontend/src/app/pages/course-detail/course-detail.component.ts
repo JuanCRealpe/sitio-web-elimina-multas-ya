@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { StepService } from '../../services/step.service';
 import { AuthService } from '../../services/auth.service';
-import { CourseService } from '../../services/course.service'; // ← NUEVO
+import { CourseService } from '../../services/course.service';
 import { Step, Bloque } from '../../interfaces/step';
 import Swal from 'sweetalert2';
 
@@ -17,14 +17,15 @@ import Swal from 'sweetalert2';
 })
 export class CourseDetailComponent implements OnInit {
   private route         = inject(ActivatedRoute);
-  private router        = inject(Router); // ← NUEVO
+  private router        = inject(Router);
   private stepService   = inject(StepService);
   private authService   = inject(AuthService);
-  private courseService = inject(CourseService); // ← NUEVO
+  private courseService = inject(CourseService);
   private fb            = inject(FormBuilder);
 
   courseId: string = '';
   steps: Step[] = [];
+  courses: any[] = []; // ← NUEVO — lista de cursos para el dropdown de "boton-curso"
   cargando: boolean = false;
   esAdmin: boolean = false;
   archivoSeleccionado: File | null = null;
@@ -64,12 +65,12 @@ export class CourseDetailComponent implements OnInit {
     redirige:  ['']
   });
 
-  // después
   ngOnInit(): void {
       this.route.paramMap.subscribe(params => {
           this.courseId = params.get('id')!;
           this.esAdmin  = this.authService.esAdmin();
           this.cargarSteps();
+          this.cargarCourses(); // ← NUEVO
       });
   }
 
@@ -84,6 +85,14 @@ export class CourseDetailComponent implements OnInit {
         this.cargando = false;
         Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudieron cargar los pasos', confirmButtonColor: '#28a745' });
       }
+    });
+  }
+
+  // ── CARGAR CURSOS (para el dropdown de boton-curso) ── // ← NUEVO
+  cargarCourses(): void {
+    this.courseService.obtenerTodosLosCourses().subscribe({
+      next: (res) => this.courses = res.courses,
+      error: () => Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudieron cargar los cursos', confirmButtonColor: '#28a745' })
     });
   }
 
@@ -176,11 +185,12 @@ export class CourseDetailComponent implements OnInit {
     const tipo = this.bloqueForm.value.tipo!;
 
     if (tipo === 'boton-interno') {
+      // Crea un course nuevo oculto y lo enlaza automáticamente
       const formData = new FormData();
       formData.append('title',       this.bloqueForm.value.nombre || 'Nuevo curso');
       formData.append('description', '');
       formData.append('category',    '');
-      formData.append('esInterno',   'true'); // ← NUEVO
+      formData.append('esInterno',   'true');
 
       this.courseService.crearCourse(formData).subscribe({
         next: (res) => {
@@ -188,6 +198,10 @@ export class CourseDetailComponent implements OnInit {
         },
         error: () => Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudo crear el curso', confirmButtonColor: '#28a745' })
       });
+    } else if (tipo === 'boton-curso') {
+      // ← NUEVO — enlaza a un course ya existente, elegido del dropdown
+      const redirige = this.bloqueForm.value.redirige;
+      this.guardarBloqueConRedirige(stepId, redirige || null);
     } else {
       this.guardarBloqueConRedirige(stepId, null);
     }
@@ -275,12 +289,11 @@ export class CourseDetailComponent implements OnInit {
       }
     });
   }
-  
-    // ── IR A CURSO ── // ← NUEVO
+
+  // ── IR A CURSO ──
   irACurso(redirige: any): void {
     const id = redirige?._id || redirige;
     this.router.navigate(['/course', id]);
   }
 
 }
-  

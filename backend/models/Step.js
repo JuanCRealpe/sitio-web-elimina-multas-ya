@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bloqueSchema = new mongoose.Schema({
     tipo: {
         type: String,
-        enum: ["titulo", "subtitulo", "texto", "imagen", "archivo", "boton-externo", "boton-interno"],
+        enum: ["titulo", "subtitulo", "texto", "imagen", "video", "archivo", "boton-externo", "boton-interno", "boton-curso"],
         required: true
     },
     contenido: { 
