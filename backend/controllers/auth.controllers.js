@@ -57,7 +57,7 @@ const login = async(req, res) => {
 
         res.json({
             token,
-            role: user.role
+            role: user.role,
             nombre: user.nombre // ← agregado
         })
     } catch (error) {
