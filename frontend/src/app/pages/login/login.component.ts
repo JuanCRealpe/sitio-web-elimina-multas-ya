@@ -59,6 +59,7 @@ export class LoginComponent {
             this.cargando = false;
             this.authService.guardarToken(respuesta.token);
             this.authService.guardarRole(respuesta.role);
+            this.authService.guardarNombre(respuesta.nombre); // ← agregar aquí
 
             if (respuesta.role === 'admin') { // ← NUEVO admin va directo
               Swal.fire({

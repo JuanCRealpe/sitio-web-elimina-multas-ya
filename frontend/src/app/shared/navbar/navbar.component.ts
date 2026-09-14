@@ -18,10 +18,12 @@ export class NavbarComponent implements DoCheck {
 
   autenticado: boolean = false;
   admin: boolean = false;
+  nombreUsuario: string | null = null;   // ← NUEVO
 
   ngDoCheck(): void {
     this.autenticado = this.authService.estaAutenticado();
     this.admin = this.authService.esAdmin();
+    this.nombreUsuario = this.authService.obtenerNombre();   // ← NUEVO
   }
 
   logout(): void {

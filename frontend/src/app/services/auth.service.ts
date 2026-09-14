@@ -59,5 +59,13 @@ export class AuthService {
     return sessionStorage.getItem("suscripcion") === "true";
   }
 
+    guardarNombre(nombre: string): void {
+    sessionStorage.setItem("nombre", nombre);
+  }
+
+  obtenerNombre(): string | null {
+    return sessionStorage.getItem("nombre");
+  }
+
 }
 
