@@ -12,8 +12,10 @@ export class HomeComponent implements DoCheck {
   private authService = inject(AuthService);
 
   autenticado: boolean = false;
+  nombreUsuario: string | null = null;
 
   ngDoCheck(): void {
     this.autenticado = this.authService.estaAutenticado();
+    this.nombreUsuario = this.authService.obtenerNombre();
   }
 }
