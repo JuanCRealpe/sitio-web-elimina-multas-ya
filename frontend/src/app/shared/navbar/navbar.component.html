@@ -36,9 +36,15 @@
                     </li>
                 </ul>
                 <div class="text-center text-lg-end">
-                    <button routerLink="/" class="btn btn-primary fw-bold border-2" id="btn-header">
+                    @if (enPaginaLogin) {
+                    <button routerLink="/register" class="btn btn-primary fw-bold border-2" id="btn-header">
+                        Registrar
+                    </button>
+                    } @else {
+                    <button routerLink="/login" class="btn btn-primary fw-bold border-2" id="btn-header">
                         Iniciar Sesion
                     </button>
+                    }
                 </div>
             </ng-container>
         </div>

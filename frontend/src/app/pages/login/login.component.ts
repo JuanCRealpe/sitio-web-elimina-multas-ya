@@ -27,6 +27,8 @@ export class LoginComponent {
   private router         = inject(Router);
 
   cargando: boolean = false;
+  mostrarPassword: boolean = false; // ← NUEVO
+
   form = this.fb.nonNullable.group({
     email: [
       "",
@@ -44,6 +46,10 @@ export class LoginComponent {
     ]
   })
 
+  togglePassword(): void { // ← NUEVO
+    this.mostrarPassword = !this.mostrarPassword;
+  }
+
   iniciarSesion() {
     if(this.form.invalid) {
       this.form.markAllAsTouched();
@@ -59,9 +65,9 @@ export class LoginComponent {
             this.cargando = false;
             this.authService.guardarToken(respuesta.token);
             this.authService.guardarRole(respuesta.role);
-            this.authService.guardarNombre(respuesta.nombre); // ← agregar aquí
+            this.authService.guardarNombre(respuesta.nombre);
 
-            if (respuesta.role === 'admin') { // ← NUEVO admin va directo
+            if (respuesta.role === 'admin') {
               Swal.fire({
                 icon: 'success',
                 title: '¡Bienvenido!',
@@ -72,10 +78,10 @@ export class LoginComponent {
               }).then(() => {
                 this.router.navigate(['/course']);
               });
-              return; // ← NUEVO
+              return;
             }
 
-            this.paymentService.verificarSuscripcion().subscribe({ // ← solo usuarios normales
+            this.paymentService.verificarSuscripcion().subscribe({
               next: (res) => {
                 this.authService.guardarSuscripcion(res.activa);
                 Swal.fire({

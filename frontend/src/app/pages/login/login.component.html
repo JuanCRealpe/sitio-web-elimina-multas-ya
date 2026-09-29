@@ -35,11 +35,21 @@
                                 <label class="form-label fw-semibold text-dark">
                                     Password
                                 </label>
-                                <input 
-                                    type="password"
-                                    class="form-control border-success-subtle"
-                                    formControlName="password"
-                                >
+                                <!-- ← CAMBIADO: envolvemos el input en un div relativo para posicionar el ícono -->
+                                <div class="position-relative">
+                                    <input 
+                                        [type]="mostrarPassword ? 'text' : 'password'"
+                                        class="form-control border-success-subtle"
+                                        formControlName="password"
+                                    >
+                                    <i 
+                                        class="bi position-absolute top-50 end-0 translate-middle-y me-3"
+                                        [class.bi-eye-fill]="!mostrarPassword"
+                                        [class.bi-eye-slash-fill]="mostrarPassword"
+                                        style="cursor: pointer;"
+                                        (click)="togglePassword()"
+                                    ></i>
+                                </div>
                                 <small
                                     class="text-danger"
                                     *ngIf="
