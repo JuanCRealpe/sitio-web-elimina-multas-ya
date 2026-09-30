@@ -1,52 +1,85 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark px-sm-4 px-xl-5 fixed-top">
+<nav class="navbar navbar-expand-sm navbar-dark fixed-top site-nav px-sm-4 px-xl-5"
+    aria-label="Navegación principal">
     <div class="container-fluid">
-        <a class="navbar-brand brand-shadow brand-text fw-bolder" routerLink="/">
+        <a class="navbar-brand brand-text site-nav__brand" routerLink="/">
             Elimina multas ya
         </a>
-        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
-            <span class="navbar-toggler-icon">
-            </span>
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false"
+            aria-label="Abrir menú de navegación">
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarMain">
-            <ng-container *ngIf="autenticado">
-                <ul class="navbar-nav mx-auto text-center fw-bold">
-                    <li class="nav-item">
-                        <a class="nav-link active" routerLink="/course">Contenido</a>
-                    </li>
-                    @if (admin) {
-                    <li class="nav-item ms-3">
-                        <a class="nav-link active" routerLink="/admin">Admin cards</a>
-                    </li>
-                    }
-                </ul>
-                <div class="text-center text-lg-end d-flex align-items-center gap-3">
-                    <span class="text-white fw-bold">
-                        <i class="bi bi-person-circle me-1"></i>
-                        Bienvenido, {{ nombreUsuario }}
-                    </span>
-                    <button class="btn btn-primary fw-bold border-2" id="btn-header-a" (click)="logout()">
-                        Cerrar Sesion
-                    </button>
-                </div>
-            </ng-container>
-            <ng-container *ngIf="!autenticado">
-                <ul class="navbar-nav mx-auto text-center fw-bold">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="">Inicio</a>
-                    </li>
-                </ul>
-                <div class="text-center text-lg-end">
-                    @if (enPaginaLogin) {
-                    <button routerLink="/register" class="btn btn-primary fw-bold border-2" id="btn-header">
-                        Registrar
-                    </button>
-                    } @else {
-                    <button routerLink="/login" class="btn btn-primary fw-bold border-2" id="btn-header">
-                        Iniciar Sesion
-                    </button>
-                    }
-                </div>
-            </ng-container>
+
+            @if (autenticado) {
+            <!-- ========== CON SESIÓN ========== -->
+            <ul class="navbar-nav mx-auto text-center">
+                @if (enHome) {
+                <li class="nav-item">
+                    <a class="nav-link site-nav__link active" href="#inicio">Inicio</a>
+                </li>
+                <li class="nav-item ms-2">
+                    <a class="nav-link site-nav__link active" href="#quienes-somos">Quiénes Somos</a>
+                </li>
+                } @else {
+                <li class="nav-item">
+                    <a class="nav-link site-nav__link active" routerLink="/course">Contenido</a>
+                </li>
+                @if (admin) {
+                <li class="nav-item ms-3">
+                    <a class="nav-link site-nav__link active" routerLink="/admin">Admin cards</a>
+                </li>
+                }
+                }
+            </ul>
+            <div class="text-center text-lg-end d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end gap-3">
+                <span class="site-nav__welcome">
+                    <i class="bi bi-person-circle me-1" aria-hidden="true"></i>
+                    Bienvenido, {{ nombreUsuario }}
+                </span>
+                @if (enHome) {
+                <button routerLink="/course" class="btn btn-primary btn-cta border-2 site-nav__cta"
+                    id="btn-header">
+                    Ver contenido
+                </button>
+                } @else {
+                <button class="btn btn-primary btn-cta btn-cta--danger border-2 site-nav__cta"
+                    id="btn-header-a" (click)="logout()">
+                    Cerrar Sesion
+                </button>
+                }
+            </div>
+            } @else {
+            <!-- ========== SIN SESIÓN ========== -->
+            <ul class="navbar-nav mx-auto text-center">
+                @if (enHome) {
+                <li class="nav-item">
+                    <a class="nav-link site-nav__link active" href="#inicio">Inicio</a>
+                </li>
+                <li class="nav-item ms-2">
+                    <a class="nav-link site-nav__link active" href="#quienes-somos">Quiénes Somos</a>
+                </li>
+                } @else {
+                <li class="nav-item">
+                    <a class="nav-link site-nav__link active" routerLink="/">Inicio</a>
+                </li>
+                }
+            </ul>
+            <div class="text-center text-lg-end">
+                @if (enPaginaLogin) {
+                <button routerLink="/register" class="btn btn-primary btn-cta border-2 site-nav__cta"
+                    id="btn-header">
+                    Registrar
+                </button>
+                } @else {
+                <button routerLink="/login" class="btn btn-primary btn-cta border-2 site-nav__cta"
+                    id="btn-header">
+                    Iniciar Sesion
+                </button>
+                }
+            </div>
+            }
+
         </div>
     </div>
 </nav>
