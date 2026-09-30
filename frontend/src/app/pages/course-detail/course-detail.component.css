@@ -70,9 +70,11 @@
 }
 
 .bloque-texto {
-    color: #d1d5db;
+    color: #e1e5eb;
     line-height: 1.9;
     font-size: 1.1rem;
+    text-align: justify;     /* 👈 agregar: sobreescribe el center heredado */
+    white-space: pre-wrap;
 }
 
 .bloque-imagen {

@@ -2,12 +2,21 @@ import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   ReactiveFormsModule,
-  Validators
+  Validators,
+  AbstractControl,
+  ValidationErrors
 } from "@angular/forms"
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import Swal from 'sweetalert2';
+
+// ← NUEVO — validador que compara password y confirmPassword
+function passwordsIgualesValidator(form: AbstractControl): ValidationErrors | null {
+  const password = form.get('password')?.value;
+  const confirmPassword = form.get('confirmPassword')?.value;
+  return password === confirmPassword ? null : { passwordsNoCoinciden: true };
+}
 
 @Component({
   selector: 'app-register',
@@ -25,9 +34,12 @@ export class RegisterComponent {
   private router = inject(Router);
 
   cargando: boolean = false;
+  mostrarPassword: boolean = false;
+  mostrarConfirmPassword: boolean = false; // ← NUEVO
+
   form = this.fb.group({
     nombre: [
-      "", 
+      "",
       [
         Validators.required,
         Validators.minLength(3)
@@ -56,11 +68,26 @@ export class RegisterComponent {
         Validators.required,
         Validators.minLength(5)
       ]
+    ],
+
+    confirmPassword: [ // ← NUEVO
+      "",
+      [
+        Validators.required
+      ]
     ]
-  })
+  }, { validators: passwordsIgualesValidator }) // ← NUEVO
+
+  togglePassword(): void {
+    this.mostrarPassword = !this.mostrarPassword;
+  }
+
+  toggleConfirmPassword(): void { // ← NUEVO
+    this.mostrarConfirmPassword = !this.mostrarConfirmPassword;
+  }
 
   registrar() {
-    if(this.form.invalid) {
+    if (this.form.invalid) {
       this.form.markAllAsTouched();
 
       return;
@@ -68,32 +95,34 @@ export class RegisterComponent {
 
     this.cargando = true;
 
-    this.authService
-        .registrar(this.form.value as any)
-        .subscribe({
-          next: () => {
-            this.cargando = false;
-            Swal.fire({                    // ← CAMBIADO
-              icon: 'success',
-              title: '¡Registro exitoso!',
-              text: 'Usuario registrado correctamente',
-              confirmButtonColor: '#28a745',
-              timer: 1500,
-              showConfirmButton: false
-            }).then(() => {
-              this.router.navigate(["/login"]);
-            });
-          },
-          error: (error) => {
-            this.cargando = false;
-            Swal.fire({                    // ← CAMBIADO
-              icon: 'error',
-              title: 'Error',
-              text: error.error?.msg || 'Error al registrar',
-              confirmButtonColor: '#28a745'
-            });
-          }
-        })
-  }
+    // ← CAMBIADO: se excluye confirmPassword antes de enviar al backend
+    const { confirmPassword, ...datosParaEnviar } = this.form.value;
 
+    this.authService
+      .registrar(datosParaEnviar as any)
+      .subscribe({
+        next: () => {
+          this.cargando = false;
+          Swal.fire({
+            icon: 'success',
+            title: '¡Registro exitoso!',
+            text: 'Usuario registrado correctamente',
+            confirmButtonColor: '#28a745',
+            timer: 1500,
+            showConfirmButton: false
+          }).then(() => {
+            this.router.navigate(["/login"]);
+          });
+        },
+        error: (error) => {
+          this.cargando = false;
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: error.error?.msg || 'Error al registrar',
+            confirmButtonColor: '#28a745'
+          });
+        }
+      })
+  }
 }

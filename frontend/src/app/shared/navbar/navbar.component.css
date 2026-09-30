@@ -1,51 +1,211 @@
-.navbar {
-    background-color: #00331d !important; 
-    box-shadow: 0 0 10px 0 black;
+/* ===== Variables del navbar ===== */
+:host {
+    /* Paleta */
+    --color-nav: #00331d;
+    --color-primary: #006b3c;
+    --color-primary-dark: #005a33;
+    --color-surface: #212529;
+    --color-ink: rgb(43, 42, 42);
+    --color-charcoal: rgb(53, 53, 53);
+    --color-gold: rgb(252, 206, 1);
+    --color-gold-soft: rgb(255, 217, 0);
+    --color-lime: greenyellow;
+    --color-action: rgb(2, 172, 2);
+    --color-text-soft: rgba(255, 255, 255, .8);
+
+    /* Tipografía */
+    --font-title: 'Archivo Black', sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    /* Sistema */
+    --ease: cubic-bezier(.22, .61, .36, 1);
 }
-#btn-header {
-    background-color: rgb(53, 53, 53) !important;
-    border-color: rgb(252, 206, 1) !important;
+
+/* ===== Navbar ===== */
+.site-nav {
+    isolation: isolate;
+    font-family: var(--font-body);
+    --bs-navbar-padding-y: .5rem;
+    --bs-navbar-toggler-border-color: rgba(252, 206, 1, .5);
+    --bs-navbar-toggler-focus-width: .2rem;
+
+    background-color: rgba(0, 51, 29, .92);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid rgba(252, 206, 1, .25);
+    box-shadow: 0 6px 30px -10px rgba(0, 0, 0, .8);
+    animation: slideDown .7s var(--ease) backwards;
 }
-#btn-header:hover {
-    background-color: rgb(2, 172, 2) !important;
-    scale: 1.05 !important;
-    transition: 0.3s !important;
-}
-#btn-header-a {
-    background-color: rgb(53, 53, 53) !important;
-    border-color: rgb(252, 206, 1) !important;
-}
-#btn-header-a:hover {
-    background-color: red !important;
-    scale: 1.05 !important;
-    transition: 0.3s !important;
-}
-.brand-shadow {
-    text-shadow: 2px 2px 6px black;
-}
-.navbar-nav a:hover {
-    color: rgb(255, 217, 0) !important;
-    border-color: black !important;
-    scale: 1.07 !important;
-    transition: 0.3s !important;
+
+.site-nav__brand {
+    font-family: var(--font-title);
+    font-size: clamp(1.05rem, 5vw, 1.3rem);
+    font-weight: 400;
+    letter-spacing: .5px;
     text-shadow: 2px 2px 6px black;
 }
 
+.site-nav .site-nav__link {
+    position: relative;
+    padding-inline: .9rem;
+    color: rgba(255, 255, 255, .92);
+    font-weight: 700;
+    letter-spacing: .4px;
+    transition: color .3s, text-shadow .3s;
+}
 
-/* responsive */
-@media (max-width: 500px) {
-    .navbar-toggler {
-        font-size: 0.7rem;
+.site-nav .site-nav__link::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: .1rem;
+    width: 0;
+    height: 2px;
+    background: var(--color-gold);
+    border-radius: 2px;
+    transform: translateX(-50%);
+    transition: width .35s var(--ease);
+}
+
+.site-nav .site-nav__link:hover,
+.site-nav .site-nav__link:focus-visible {
+    color: var(--color-gold-soft);
+    text-shadow: 2px 2px 6px black;
+}
+
+.site-nav .site-nav__link:hover::after,
+.site-nav .site-nav__link:focus-visible::after {
+    width: 60%;
+}
+
+/* Botón hamburguesa: tamaño propio, nunca se recorta */
+.site-nav .navbar-toggler {
+    flex-shrink: 0;
+    padding: .4rem .6rem;
+    font-size: 1rem;
+    line-height: 1;
+    border-radius: 10px;
+    transition: background-color .3s, border-color .3s;
+}
+
+.site-nav .navbar-toggler:hover {
+    background: rgba(252, 206, 1, .12);
+    border-color: var(--color-gold);
+}
+
+.site-nav .navbar-toggler-icon {
+    flex-shrink: 0;
+    width: 1.6rem;
+    height: 1.6rem;
+}
+
+.site-nav__welcome {
+    display: inline-flex;
+    align-items: center;
+    padding: .45rem 1rem;
+    margin-block: .25rem;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: .3px;
+    background: rgba(255, 255, 255, .07);
+    border: 1px solid rgba(252, 206, 1, .35);
+    border-radius: 999px;
+    box-shadow: inset 0 0 14px rgba(252, 206, 1, .08);
+}
+
+.site-nav__welcome i {
+    font-size: 1.1rem;
+    color: var(--color-gold);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 575.98px) {
+    .site-nav {
+        background-color: var(--color-nav);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
     }
-    .btn-ingresar {
-        font-size: 0.7rem;
+
+    .site-nav__welcome {
+        display: flex;
+        justify-content: center;
+        margin-bottom: .6rem;
     }
 }
+
 @media (max-width: 260px) {
-    .navbar-brand {
+    .site-nav .site-nav__brand {
         font-size: 15px;
     }
-    .navbar-toggler {
-        font-size: 0.5rem;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ===== Botón principal (.btn.btn-cta) ===== */
+.btn.btn-cta {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--color-charcoal);
+    --bs-btn-border-color: var(--color-gold);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--color-action);
+    --bs-btn-hover-border-color: var(--color-gold);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--color-action);
+    --bs-btn-active-border-color: var(--color-gold);
+    --bs-btn-focus-shadow-rgb: 252, 206, 1;
+    --bs-btn-padding-x: 1.7rem;
+
+    position: relative;
+    overflow: hidden;
+    font-weight: 700;
+    letter-spacing: .4px;
+    box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .75);
+    transition: background-color .3s, border-color .3s,
+        box-shadow .3s var(--ease), scale .3s var(--ease);
+}
+
+.btn.btn-cta::before {
+    /* destello dorado */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(252, 206, 1, .35) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform .7s var(--ease);
+    pointer-events: none;
+}
+
+.btn.btn-cta:hover {
+    scale: 1.05;
+    box-shadow: 0 14px 30px -10px rgba(0, 0, 0, .8), 0 0 0 4px rgba(252, 206, 1, .25);
+}
+
+.btn.btn-cta:hover::before {
+    transform: translateX(120%);
+}
+
+/* Variante "Cerrar Sesion": hover rojo */
+.btn.btn-cta.btn-cta--danger {
+    --bs-btn-hover-bg: red;
+    --bs-btn-active-bg: red;
+}
+
+/* ---------- Accesibilidad: menos movimiento ---------- */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
     }
 }

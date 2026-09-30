@@ -73,11 +73,20 @@
                                 <label class="form-label fw-semibold text-dark">
                                     Password
                                 </label>
-                                <input 
-                                    type="password"
-                                    class="form-control border-success-subtle"
-                                    formControlName="password"
-                                >
+                                <div class="position-relative">
+                                    <input 
+                                        [type]="mostrarPassword ? 'text' : 'password'"
+                                        class="form-control border-success-subtle"
+                                        formControlName="password"
+                                    >
+                                    <i 
+                                        class="bi position-absolute top-50 end-0 translate-middle-y me-3"
+                                        [class.bi-eye-fill]="!mostrarPassword"
+                                        [class.bi-eye-slash-fill]="mostrarPassword"
+                                        style="cursor: pointer;"
+                                        (click)="togglePassword()"
+                                    ></i>
+                                </div>
                                 <small
                                     class="text-danger"
                                     *ngIf="
@@ -88,6 +97,34 @@
                                     El password debe tener minimo 6 caracteres
                                 </small>
                             </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold text-dark">
+                                    Confirmar Password
+                                </label>
+                                <div class="position-relative">
+                                    <input 
+                                        [type]="mostrarConfirmPassword ? 'text' : 'password'"
+                                        class="form-control border-success-subtle"
+                                        formControlName="confirmPassword"
+                                    >
+                                    <i 
+                                        class="bi position-absolute top-50 end-0 translate-middle-y me-3"
+                                        [class.bi-eye-fill]="!mostrarConfirmPassword"
+                                        [class.bi-eye-slash-fill]="mostrarConfirmPassword"
+                                        style="cursor: pointer;"
+                                        (click)="toggleConfirmPassword()"
+                                    ></i>
+                                </div>
+                                <small
+                                    class="text-danger"
+                                    *ngIf="
+                                        form.get('confirmPassword')?.touched &&
+                                        form.hasError('passwordsNoCoinciden')
+                                    "
+                                >
+                                    Las contraseñas no coinciden
+                                </small>
+                            </div>
                             <button
                                 class="btn btn-success w-100 fw-semibold shadow-sm"
                                 [disabled]="cargando"
@@ -95,6 +132,12 @@
                                 {{ cargando ? 'Registrando...' : ' Registrarse' }}
                             </button>
                         </form>
+                        <p class="text-center mt-3">
+                            ¿Ya tienes una cuenta?
+                            <a routerLink="/login">
+                                Iniciar sesion
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
