@@ -1,0 +1,114 @@
+/* ===== Carrusel ===== */
+.promo__slide {
+    height: 550px;
+    overflow: hidden;
+}
+
+.promo__img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.promo__slide.active .promo__img {
+    animation: zoomSlow 5s ease-out both;
+}
+
+.promo__slide::after {
+    /* velo para legibilidad */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 20, 10, .35), rgba(0, 20, 10, .68));
+    pointer-events: none;
+    z-index: 1;
+}
+
+.promo__slide .carousel-caption {
+    z-index: 2;
+}
+
+.promo__title {
+    max-width: 24ch;
+    font-family: var(--font-title);
+    font-size: clamp(1.4rem, 3.4vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.25;
+    color: #fff;
+    opacity: 0;
+    /* oculto mientras la imagen se desliza */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, .5), 0 8px 28px rgba(0, 0, 0, .55);
+}
+
+.promo__slide.active .promo__title {
+    animation: fadeUp .9s var(--ease) .15s both;
+}
+
+/* Indicadores */
+.promo .carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border: 0;
+    border-radius: 999px;
+    transition: width .4s var(--ease), background-color .3s;
+}
+
+.promo .carousel-indicators [data-bs-target].active {
+    width: 34px;
+    background-color: var(--color-gold);
+}
+
+/* Flechas */
+.promo .carousel-control-prev-icon,
+.promo .carousel-control-next-icon {
+    width: 2.8rem;
+    height: 2.8rem;
+    padding: .8rem;
+    background-color: rgba(0, 51, 29, .65);
+    background-size: 45%;
+    border: 1px solid rgba(252, 206, 1, .5);
+    border-radius: 50%;
+    transition: background-color .3s, scale .3s var(--ease);
+}
+
+.promo .carousel-control-prev:hover .carousel-control-prev-icon,
+.promo .carousel-control-next:hover .carousel-control-next-icon {
+    background-color: var(--color-action);
+    scale: 1.1;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 500px) {
+    .promo__slide {
+        height: 400px;
+    }
+}
+
+@media (max-width: 350px) {
+    .promo__slide {
+        height: 300px;
+    }
+}
+
+/* Animaciones propias de este archivo (Angular no comparte keyframes entre archivos) */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes zoomSlow {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.07);
+    }
+}

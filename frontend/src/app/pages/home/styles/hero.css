@@ -1,0 +1,146 @@
+/* ===== Hero ===== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: calc(var(--nav-height) + 2.5rem) clamp(1.5rem, 5vw, 3rem) clamp(3rem, 6vw, 5rem);
+  background-color: var(--color-primary);
+  background-image:
+    radial-gradient(circle at 88% 8%, rgba(255, 255, 255, .14), transparent 45%),
+    linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+}
+.hero::after {                        /* línea dorada inferior */
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+.hero__row { position: relative; z-index: 1; }
+
+.hero__title {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: clamp(2rem, 4.4vw, 3.3rem);
+  line-height: 1.12;
+  letter-spacing: -.02em;
+}
+.hero__lead {
+  display: block;
+  font-size: 1.08em;
+  background: linear-gradient(180deg, #ffffff 30%, #c9f2dc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, .4));
+  animation: fadeUp .9s var(--ease) .15s both;
+}
+.hero__offer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .6em .3em;             /* espacio entre filas y entre piezas */
+  margin-top: .6em;
+  font-size: .68em;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, .92);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .35);
+  animation: fadeUp .9s var(--ease) .3s both;
+}
+
+/* Etiquetas de precio y plazo */
+.hero__tag {
+  --tilt: 0deg;
+  position: relative;
+  display: inline-block;
+  margin-inline: .12em;
+  padding: .08em .5em;
+  font-size: 1.28em;
+  font-weight: 800;
+  line-height: 1.25;
+  white-space: nowrap;
+  border-radius: .5em;
+  transform: rotate(var(--tilt));
+  animation: tagIn .75s var(--ease) .7s both;
+  transition: scale .3s var(--ease), box-shadow .3s var(--ease);
+}
+.hero__tag:hover { scale: 1.06; }
+
+.hero__tag--price {
+  --tilt: -2.5deg;
+  overflow: hidden;
+  color: var(--color-nav);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .45);
+  background: linear-gradient(135deg, #fff08a 0%, var(--color-gold) 48%, #e2a800 100%);
+  box-shadow:
+    0 14px 28px -10px rgba(0, 0, 0, .65),
+    0 0 0 3px rgba(252, 206, 1, .28),
+    inset 0 1px 0 rgba(255, 255, 255, .7);
+}
+.hero__tag--price::after {           /* destello que cruza una vez */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, .7) 50%, transparent 70%);
+  transform: translateX(-130%);
+  animation: tagShine 1.2s ease 1.6s 1 both;
+}
+.hero__tag--term {
+  --tilt: 2deg;
+  color: var(--color-gold);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, .4);
+  background: rgba(0, 51, 29, .5);
+  border: 2px solid var(--color-gold);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow:
+    0 14px 28px -10px rgba(0, 0, 0, .6),
+    inset 0 0 18px rgba(252, 206, 1, .18);
+}
+
+@keyframes tagIn {
+  from { opacity: 0; transform: translateY(16px) scale(.8) rotate(var(--tilt)); }
+  to   { opacity: 1; transform: rotate(var(--tilt)); }
+}
+@keyframes tagShine { to { transform: translateX(130%); } }
+
+.hero__text {
+  max-width: 54ch;
+  margin-inline: auto;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, .92);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, .25);
+  animation: fadeUp .9s var(--ease) .35s both;
+}
+@media (min-width: 768px) {
+  .hero__text { margin-inline: 0; }
+}
+
+.hero__cta {
+  padding: .85rem 2.4rem;
+  animation: fadeUp .9s var(--ease) .55s both;
+}
+
+.hero__img {
+  border: 3px solid rgba(252, 206, 1, .55);
+  border-radius: 25px;
+  box-shadow: 0 25px 55px -15px black;
+  animation: fadeLeft 1s var(--ease) .3s both;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 300px) {
+  .hero__cta { font-size: 1rem; }
+}
+
+/* Escritorio: la oferta se alinea a la izquierda como el resto del texto */
+@media (min-width: 768px) {
+  .hero__offer { justify-content: flex-start; }
+}
+
+/* Animaciones propias de este archivo (Angular no comparte keyframes entre archivos) */
+@keyframes fadeUp   { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes fadeLeft { from { opacity: 0; transform: translateX(34px); } to { opacity: 1; transform: none; } }

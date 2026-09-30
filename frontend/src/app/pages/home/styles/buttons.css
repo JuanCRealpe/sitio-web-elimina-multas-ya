@@ -1,0 +1,42 @@
+/* ===== Botón principal (.btn.btn-cta) ===== */
+.btn.btn-cta {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--color-charcoal);
+    --bs-btn-border-color: var(--color-gold);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--color-action);
+    --bs-btn-hover-border-color: var(--color-gold);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--color-action);
+    --bs-btn-active-border-color: var(--color-gold);
+    --bs-btn-focus-shadow-rgb: 252, 206, 1;
+    --bs-btn-padding-x: 1.7rem;
+
+    position: relative;
+    overflow: hidden;
+    font-weight: 700;
+    letter-spacing: .4px;
+    box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .75);
+    transition: background-color .3s, border-color .3s,
+        box-shadow .3s var(--ease), scale .3s var(--ease);
+}
+
+.btn.btn-cta::before {
+    /* destello dorado */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(252, 206, 1, .35) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform .7s var(--ease);
+    pointer-events: none;
+}
+
+.btn.btn-cta:hover {
+    scale: 1.05;
+    box-shadow: 0 14px 30px -10px rgba(0, 0, 0, .8), 0 0 0 4px rgba(252, 206, 1, .25);
+}
+
+.btn.btn-cta:hover::before {
+    transform: translateX(120%);
+}

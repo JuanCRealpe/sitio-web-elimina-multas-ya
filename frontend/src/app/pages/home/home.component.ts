@@ -5,6 +5,13 @@ import { RouterLink } from '@angular/router';
   selector: 'app-home',
   imports: [RouterLink],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: [
+    './styles/base.css',
+    './styles/buttons.css',
+    './styles/hero.css',
+    './styles/carousel.css',
+    './styles/about.css',
+    './styles/offer.css'
+  ]
 })
 export class HomeComponent {}

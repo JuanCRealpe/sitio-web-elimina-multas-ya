@@ -1,0 +1,150 @@
+/* ===== Oferta ===== */
+.offer {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-primary);
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, .16), transparent 60%),
+        linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+}
+
+.offer::before {
+    /* línea dorada superior */
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+.offer__row {
+    padding: 4.5rem 1.5rem;
+}
+
+/* Insignia "oferta tiempo limitado" */
+.offer__eyebrow {
+    display: flex;
+    width: fit-content;
+    margin-inline: auto;
+    align-items: center;
+    gap: .75rem;
+    padding: .6rem 1.5rem;
+    font-family: var(--font-body);
+    font-size: clamp(.8rem, 1.5vw, 1rem);
+    font-weight: 700;
+    letter-spacing: .22em;
+    color: var(--color-gold);
+    background: rgba(0, 51, 29, .45);
+    border: 1px solid rgba(252, 206, 1, .55);
+    border-radius: 999px;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 12px 26px -12px black, inset 0 0 16px rgba(252, 206, 1, .12);
+}
+
+.offer__eyebrow::before {
+    content: '';
+    flex-shrink: 0;
+    width: .6rem;
+    height: .6rem;
+    background: var(--color-gold);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(252, 206, 1, .6);
+    animation: ping 1.9s ease-out infinite;
+}
+
+@keyframes ping {
+    to {
+        box-shadow: 0 0 0 .7rem rgba(252, 206, 1, 0);
+    }
+}
+
+/* Tarjeta de precio */
+.offer__price {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    width: fit-content;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: .25em .55em;
+    margin: 1.6rem auto 1.2rem;
+    padding: 1rem clamp(1.4rem, 4vw, 2.8rem) 1.2rem;
+    font-family: var(--font-body);
+    line-height: 1;
+    background: linear-gradient(145deg, rgba(0, 51, 29, .62), rgba(0, 51, 29, .28));
+    border: 1px solid rgba(252, 206, 1, .5);
+    border-radius: 28px;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    box-shadow:
+        0 35px 60px -28px black,
+        0 0 0 6px rgba(252, 206, 1, .08),
+        inset 0 1px 0 rgba(255, 255, 255, .18);
+}
+
+.offer__price::before {
+    /* resplandor dorado detrás */
+    content: '';
+    position: absolute;
+    inset: -30% -10%;
+    z-index: -1;
+    background: radial-gradient(closest-side, rgba(252, 206, 1, .28), transparent 72%);
+    filter: blur(14px);
+}
+
+.offer__amount {
+    font-size: clamp(2.8rem, 7.5vw, 4.8rem);
+    font-weight: 800;
+    letter-spacing: -.04em;
+    background: linear-gradient(180deg, #fff6b0 0%, var(--color-gold) 55%, #e2a800 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 6px 18px rgba(0, 0, 0, .45));
+}
+
+.offer__times {
+    font-size: clamp(1.4rem, 3.4vw, 2.2rem);
+    font-weight: 700;
+    color: rgba(255, 255, 255, .6);
+}
+
+.offer__term {
+    font-size: clamp(2.5rem, 6.9vw, 4.4rem);
+    font-weight: 800;
+    letter-spacing: .06em;
+    color: #fff;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, .4);
+}
+
+.offer__text {
+    max-width: 60ch;
+    margin: 1rem auto;
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.7vw, 1.15rem);
+    font-weight: 500;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, .92);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, .25);
+}
+
+.offer__cta {
+    padding: .9rem 2.6rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 322px) {
+    .offer__cta {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 292px) {
+    .offer__cta {
+        font-size: .8rem;
+    }
+}

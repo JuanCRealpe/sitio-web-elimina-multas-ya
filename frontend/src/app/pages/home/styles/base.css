@@ -1,0 +1,88 @@
+/* ===== Base del home: variables, scroll y aparición ===== */
+:host {
+    overflow-x: clip;
+    /* evita desplazamiento horizontal en celular */
+    /* Paleta */
+    --color-nav: #00331d;
+    --color-primary: #006b3c;
+    --color-primary-dark: #005a33;
+    --color-surface: #212529;
+    --color-ink: rgb(43, 42, 42);
+    --color-charcoal: rgb(53, 53, 53);
+    --color-gold: rgb(252, 206, 1);
+    --color-gold-soft: rgb(255, 217, 0);
+    --color-lime: greenyellow;
+    --color-action: rgb(2, 172, 2);
+    --color-text-soft: rgba(255, 255, 255, .8);
+
+    /* Tipografía */
+    --font-title: 'Archivo Black', sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    /* Sistema */
+    --ease: cubic-bezier(.22, .61, .36, 1);
+    --nav-height: 68px;
+    --radius: 20px;
+    --shadow-text: 2px 2px 10px rgba(0, 0, 0, .8);
+
+    display: block;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+}
+
+#inicio,
+#quienes-somos {
+    scroll-margin-top: var(--nav-height);
+}
+
+/* ===== Aparecer al hacer scroll (CSS puro) ===== */
+@supports (animation-timeline: view()) {
+    .reveal {
+        animation: fadeUp linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 45%;
+    }
+
+    .reveal--left {
+        animation-name: fadeLeft;
+    }
+}
+
+/* Animaciones propias de este archivo (Angular no comparte keyframes entre archivos) */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fadeLeft {
+    from {
+        opacity: 0;
+        transform: translateX(34px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ---------- Accesibilidad: menos movimiento ---------- */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .promo__title {
+        opacity: 1;
+    }
+}
