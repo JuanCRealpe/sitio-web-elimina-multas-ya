@@ -85,17 +85,122 @@
 }
 
 /* VIDEO — grande, tipo reproductor de curso */
-.bloque-video {
+/* ✅ CAMBIO: se eliminó la regla .bloque-video; sus estilos (ancho máx., 16/9,
+   max-height, borde verde y radio) pasaron al marco (.video-frame) y al video
+   (.video-frame__video) */
+
+/* ✅ CAMBIO v2: marco premium — degradado verde sutil, brillo suave y línea de acento superior */
+.video-frame {
+    position: relative;
     width: 100%;
     max-width: 900px;
+    margin: 0.75rem auto;
+    background: linear-gradient(160deg, #1f3a27 0%, #14261b 55%, #0f1b14 100%);
+    border: 1px solid rgba(40, 167, 69, 0.45);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.55),
+        0 0 36px rgba(40, 167, 69, 0.12);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-frame:hover {
+    border-color: rgba(40, 167, 69, 0.8);
+    box-shadow:
+        0 22px 48px rgba(0, 0, 0, 0.6),
+        0 0 44px rgba(40, 167, 69, 0.2);
+}
+
+/* ✅ CAMBIO v2: línea de acento luminosa en el borde superior */
+.video-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, #28a745 30%, #7ee293 50%, #28a745 70%, transparent 100%);
+}
+
+/* ✅ CAMBIO v2: franja superior gruesa con el aviso legal */
+.video-frame__aviso {
+    padding: 1.15rem 1.75rem 1rem;
+    border-bottom: 1px solid rgba(40, 167, 69, 0.25);
+    text-align: center;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* ✅ CAMBIO v2: etiqueta "Aviso legal" con ícono */
+.video-frame__etiqueta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.45rem;
+    color: #5ddc7f;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.video-frame__icono {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+}
+
+/* ✅ CAMBIO v2: texto del aviso, más legible y elegante */
+.video-frame__texto {
+    max-width: 70ch;
+    margin: 0 auto;
+    color: #c4ccd4;
+    font-size: 0.78rem;
+    font-weight: 400;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+}
+
+/* ✅ CAMBIO v2: laterales e inferior delgados */
+.video-frame__body {
+    padding: 12px 12px 12px;
+}
+
+/* ✅ CAMBIO v2: el video en sí (hereda lo que tenía .bloque-video) */
+.video-frame__video {
+    display: block;
+    width: 100%;
     max-height: 70vh;
     aspect-ratio: 16 / 9;
     object-fit: contain;
-    display: block;
-    margin: 0.5rem auto;
     border-radius: 8px;
-    border: 1px solid #28a745;
     background-color: #000;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* ✅ CAMBIO v2: ajuste para celulares */
+@media (max-width: 576px) {
+    .video-frame {
+        border-radius: 10px;
+    }
+
+    .video-frame__aviso {
+        padding: 0.9rem 1rem 0.8rem;
+    }
+
+    .video-frame__etiqueta {
+        font-size: 0.62rem;
+    }
+
+    .video-frame__texto {
+        font-size: 0.7rem;
+        line-height: 1.6;
+    }
+
+    .video-frame__body {
+        padding: 8px;
+    }
 }
 
 .btn-archivo {

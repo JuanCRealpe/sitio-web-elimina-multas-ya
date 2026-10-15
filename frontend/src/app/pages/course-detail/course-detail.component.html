@@ -89,9 +89,34 @@
                     <img [src]="'http://3.135.61.11:8000/' + bloque.contenido" class="img-fluid rounded bloque-imagen">
                     }
                     @if (bloque.tipo === 'video') {
-                    <video [src]="'http://3.135.61.11:8000/' + bloque.contenido" controls controlsList="nodownload"
-                        oncontextmenu="return false;" class="img-fluid rounded bloque-video">
-                    </video>
+                    <!-- ✅ CAMBIO v2: el <video> va envuelto en el marco (figure.video-frame) -->
+                    <figure class="video-frame">
+                        <!-- ✅ CAMBIO v2: franja superior gruesa con etiqueta "Aviso legal" + texto -->
+                        <figcaption class="video-frame__aviso">
+                            <span class="video-frame__etiqueta">
+                                <svg class="video-frame__icono" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5l8-3z" />
+                                    <path d="M9 12l2 2 4-4" />
+                                </svg>
+                                Aviso legal
+                            </span>
+                            <p class="video-frame__texto">
+                                El contenido educativo de esta página es exclusivamente para uso personal, no
+                                comercial. Se prohíbe su explotación con fines lucrativos sin autorización, para
+                                proteger los derechos del titular de la marca registrada. El uso indebido podrá
+                                generar sanciones legales.
+                            </p>
+                        </figcaption>
+                        <div class="video-frame__body">
+                            <!-- ✅ CAMBIO v2: clases "img-fluid rounded bloque-video" reemplazadas por "video-frame__video"
+                                 (el src, controls, controlsList y oncontextmenu quedan exactamente igual) -->
+                            <video [src]="'http://3.135.61.11:8000/' + bloque.contenido" controls
+                                controlsList="nodownload" oncontextmenu="return false;" class="video-frame__video">
+                            </video>
+                        </div>
+                    </figure>
                     }
                     @if (bloque.tipo === 'archivo') {
                     <a [href]="'http://3.135.61.11:8000/' + bloque.contenido" target="_blank" download
