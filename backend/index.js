@@ -5,7 +5,6 @@ const app = express();
 const connectDB = require("./config/db")
 
 const auth = require("./routes/auth.routes")
-const task = require("./routes/task.routes");
 const course = require("./routes/course.routes");
 const step = require("./routes/step.routes"); // ← NUEVO
 const payment = require("./routes/payment.routes"); // ← NUEVO pago
@@ -19,7 +18,6 @@ app.use("/uploads", express.static("uploads")); // ← NUEVO
 
 
 app.use("/api/auth", auth);
-app.use("/api/task", task);
 app.use("/api/courses", course);
 app.use("/api/steps", step); // ← NUEVO
 app.use("/api/payment", payment); // ← NUEVO
